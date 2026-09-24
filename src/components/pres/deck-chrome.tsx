@@ -20,7 +20,7 @@ export function BackgroundMesh() {
       />
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="p-motion absolute inset-0 h-full w-full">
         {nodes.map((n, i) => {
-          const m = nodes[(i + 1) % nodes.length];
+          const m = nodes[(i + 1) % nodes.length]!;
           const path = `M ${n.x} ${n.y} L ${m.x} ${m.y}`;
           return (
             <g key={i}>
