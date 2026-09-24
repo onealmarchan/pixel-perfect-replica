@@ -12,7 +12,7 @@ export function BackgroundMesh() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden max-[900px]:landscape:hidden" aria-hidden="true">
       <div
-        className="absolute inset-0 opacity-[0.18]"
+        className="absolute inset-0 opacity-[0.10]"
         style={{
           backgroundImage: "radial-gradient(var(--p-muted) 1px, transparent 1px)",
           backgroundSize: "34px 34px",
