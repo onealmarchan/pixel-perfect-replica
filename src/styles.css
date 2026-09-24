@@ -142,3 +142,221 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+ * Presentación "Clúster y Migraciones" — tokens semánticos
+ * ============================================================ */
+
+:root {
+  --p-bg: #07110f;
+  --p-surface: #0d1c18;
+  --p-surface-2: #122722;
+  --p-line: rgba(255, 255, 255, 0.09);
+  --p-text: #e8f3ef;
+  --p-muted: #8fa9a0;
+  --p-mint: #34d399;
+  --p-sky: #38bdf8;
+  --p-amber: #fbbf24;
+  --p-coral: #fb7185;
+  --p-accent: var(--p-mint);
+  --p-accent-2: var(--p-sky);
+}
+
+@theme inline {
+  --color-p-bg: var(--p-bg);
+  --color-p-surface: var(--p-surface);
+  --color-p-surface-2: var(--p-surface-2);
+  --color-p-line: var(--p-line);
+  --color-p-text: var(--p-text);
+  --color-p-muted: var(--p-muted);
+  --color-p-mint: var(--p-mint);
+  --color-p-sky: var(--p-sky);
+  --color-p-amber: var(--p-amber);
+  --color-p-coral: var(--p-coral);
+  --color-p-accent: var(--p-accent);
+  --color-p-accent-2: var(--p-accent-2);
+  --font-p-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-p-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-p-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@utility p-deck {
+  background-color: var(--p-bg);
+  color: var(--p-text);
+  font-family: var(--font-p-body);
+  transition: --p-accent 0.6s ease;
+}
+
+@utility p-title-cover {
+  font-family: var(--font-p-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 2vw + 4vh, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+@utility p-title {
+  font-family: var(--font-p-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.2vw + 2vh, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+@utility p-body {
+  font-size: max(1rem, clamp(1rem, 0.6vw + 1.2vh, 1.375rem));
+  line-height: 1.6;
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+@utility p-mono {
+  font-family: var(--font-p-mono);
+  font-size: max(0.75rem, clamp(0.75rem, 0.5vw + 0.6vh, 0.95rem));
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+@utility p-num {
+  font-family: var(--font-p-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility p-pad {
+  padding: clamp(20px, 4vw, 72px);
+}
+
+@utility p-gap {
+  gap: clamp(16px, 2.5vh, 32px);
+}
+
+@utility p-gap-sm {
+  gap: clamp(8px, 1.4vh, 16px);
+}
+
+@utility p-surface {
+  background-color: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: 1rem;
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+@utility p-hoverable {
+  &:hover {
+    transform: translateY(-4px);
+    background-color: var(--p-surface-2);
+    border-color: color-mix(in oklab, var(--p-accent) 55%, transparent);
+  }
+}
+
+@utility p-brackets {
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    border-color: color-mix(in oklab, var(--p-accent) 70%, transparent);
+  }
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-top-left-radius: 6px;
+  }
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+@utility p-glow {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--p-accent) 18%, transparent),
+    0 18px 60px -30px color-mix(in oklab, var(--p-accent) 70%, transparent);
+}
+
+@utility p-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 32px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 32px),
+    transparent 100%
+  );
+}
+
+@utility p-focus {
+  &:focus-visible {
+    outline: 2px solid var(--p-accent);
+    outline-offset: 3px;
+  }
+}
+
+@keyframes p-pulse-soft {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes p-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes p-dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.p-led {
+  animation: p-pulse-soft 2.4s ease-in-out infinite;
+}
+
+.p-float {
+  animation: p-float 4.5s ease-in-out infinite;
+}
+
+.p-dash {
+  stroke-dasharray: 4 8;
+  animation: p-dash 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-led,
+  .p-float,
+  .p-dash,
+  .p-motion animate,
+  .p-motion animateMotion,
+  .p-motion animateTransform {
+    animation: none !important;
+  }
+}
+
