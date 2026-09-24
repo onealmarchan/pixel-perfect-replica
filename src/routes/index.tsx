@@ -43,7 +43,7 @@ const ACCENTS: Record<string, { accent: string; accent2: string }> = {
 
 function accentFor(topic: number | null) {
   const t = TOPICS.find((x) => x.index === topic);
-  return ACCENTS[t ? t.accent : "mint"];
+  return ACCENTS[t ? t.accent : "mint"]!;
 }
 
 function hashIndex() {
@@ -59,7 +59,7 @@ function Deck() {
   const touch = useRef<{ x: number; y: number } | null>(null);
   const reduce = useReducedMotion();
 
-  const slide = SLIDES[index];
+  const slide = SLIDES[index]!;
   const accent = accentFor(slide.topic);
 
   const go = useCallback((next: number) => {
@@ -78,7 +78,7 @@ function Deck() {
   }, []);
 
   useEffect(() => {
-    document.title = `${String(index + 1).padStart(2, "0")} · ${SLIDES[index].navTitle} — ${DECK_TITLE}`;
+    document.title = `${String(index + 1).padStart(2, "0")} · ${SLIDES[index]!.navTitle} — ${DECK_TITLE}`;
     titleRef.current?.focus({ preventScroll: true });
   }, [index]);
 

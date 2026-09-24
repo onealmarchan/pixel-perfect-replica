@@ -107,7 +107,7 @@ function Agenda() {
   return (
     <div className="grid grid-cols-1 p-gap sm:grid-cols-2 lg:grid-cols-3">
       {AGENDA.map((a) => {
-        const Icon = ICONS[a.icon];
+        const Icon = ICONS[a.icon]!;
         return (
           <Panel key={a.code} className="flex flex-col gap-3 p-5">
             <div className="flex items-center justify-between gap-3">
@@ -124,7 +124,7 @@ function Agenda() {
 
 /* ---------- 4 ---------- */
 function ClusterSlide() {
-  const [tab, setTab] = useState(CLUSTER_TABS[0].key);
+  const [tab, setTab] = useState(CLUSTER_TABS[0]!.key);
   const current = CLUSTER_TABS.find((t) => t.key === tab)!;
   return (
     <TwoCol
@@ -233,7 +233,7 @@ function SplitBrainSlide({ bullets }: { bullets: string[] }) {
 /* ---------- 10 ---------- */
 function MigrationSlide() {
   const [step, setStep] = useState(0);
-  const phase = MIGRATION_PHASES[step];
+  const phase = MIGRATION_PHASES[step]!;
   return (
     <TwoCol
       text={
@@ -270,7 +270,7 @@ function FencingSlide({ bullets }: { bullets: string[] }) {
           <Bullets items={bullets} />
           <div className="flex flex-wrap items-center gap-3">
             <StepControls step={step} total={FENCING_STEPS.length} onStep={setStep} label="Pasos del fencing" />
-            <span className="p-mono text-p-text">{FENCING_STEPS[step].name}</span>
+            <span className="p-mono text-p-text">{FENCING_STEPS[step]!.name}</span>
           </div>
         </>
       }
@@ -336,7 +336,7 @@ function Closing() {
 }
 
 export function SlideBody({ index }: { index: number }) {
-  const slide = SLIDES[index];
+  const slide = SLIDES[index]!;
   switch (slide.visual) {
     case "cover":
       return <Cover />;

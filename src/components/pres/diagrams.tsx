@@ -128,7 +128,7 @@ export function CoverGraph() {
   return (
     <svg viewBox="0 0 360 400" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} aria-hidden="true">
       {nodes.map((n, i) => {
-        const m = nodes[(i + 1) % nodes.length];
+        const m = nodes[(i + 1) % nodes.length]!;
         return <Link key={i} x1={n.x} y1={n.y} x2={m.x} y2={m.y} dur={2.4 + i * 0.2} />;
       })}
       {nodes.map((n, i) => (
@@ -202,7 +202,7 @@ export function ClusterGraph() {
   return (
     <svg viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label="Diagrama de cinco nodos interconectados que forman un clúster.">
       {CLUSTER_NODES.map((n, i) => {
-        const m = CLUSTER_NODES[(i + 1) % CLUSTER_NODES.length];
+        const m = CLUSTER_NODES[(i + 1) % CLUSTER_NODES.length]!;
         return <Link key={i} x1={n.x} y1={n.y} x2={m.x} y2={m.y} dur={2.4 + i * 0.25} />;
       })}
       {CLUSTER_NODES.map((n, i) => (
@@ -223,8 +223,8 @@ export function ClusterGraph() {
       {active !== null ? (
         <g pointerEvents="none">
           <rect
-            x={Math.min(Math.max(CLUSTER_NODES[active].x - 58, 4), 288)}
-            y={CLUSTER_NODES[active].y - 60}
+            x={Math.min(Math.max(CLUSTER_NODES[active]!.x - 58, 4), 288)}
+            y={CLUSTER_NODES[active]!.y - 60}
             width={116}
             height={26}
             rx={7}
@@ -232,14 +232,14 @@ export function ClusterGraph() {
             stroke="var(--p-accent)"
           />
           <text
-            x={Math.min(Math.max(CLUSTER_NODES[active].x - 58, 4), 288) + 58}
-            y={CLUSTER_NODES[active].y - 42}
+            x={Math.min(Math.max(CLUSTER_NODES[active]!.x - 58, 4), 288) + 58}
+            y={CLUSTER_NODES[active]!.y - 42}
             textAnchor="middle"
             fill="var(--p-text)"
             fontSize={12}
             fontFamily="var(--font-p-mono)"
           >
-            {CLUSTER_NODES[active].tip}
+            {CLUSTER_NODES[active]!.tip}
           </text>
         </g>
       ) : null}
@@ -295,7 +295,7 @@ export function HeartbeatGraph({ failed }: { failed: boolean }) {
   return (
     <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={failed ? "Un nodo dejó de responder y sus latidos se interrumpen." : "Todos los nodos intercambian latidos."}>
       {nodes.map((n, i) => {
-        const m = nodes[(i + 1) % nodes.length];
+        const m = nodes[(i + 1) % nodes.length]!;
         const broken = failed && (i === down || (i + 1) % nodes.length === down);
         return <Link key={i} x1={n.x} y1={n.y} x2={m.x} y2={m.y} broken={broken} dur={2 + i * 0.2} />;
       })}
@@ -367,13 +367,13 @@ export function SplitBrainDiagram({ guarded }: { guarded: boolean }) {
       <Link x1={140} y1={130} x2={310} y2={90} broken />
       {left.map((n, i) => (
         <g key={`l${i}`}>
-          <Link x1={n.x} y1={n.y} x2={left[(i + 1) % left.length].x} y2={left[(i + 1) % left.length].y} tone={leftTone} />
+          <Link x1={n.x} y1={n.y} x2={left[(i + 1) % left.length]!.x} y2={left[(i + 1) % left.length]!.y} tone={leftTone} />
           <HexNode x={n.x} y={n.y} tone={leftTone} r={24} float />
         </g>
       ))}
       {right.map((n, i) => (
         <g key={`r${i}`}>
-          <Link x1={n.x} y1={n.y} x2={right[(i + 1) % right.length].x} y2={right[(i + 1) % right.length].y} tone={rightTone} />
+          <Link x1={n.x} y1={n.y} x2={right[(i + 1) % right.length]!.x} y2={right[(i + 1) % right.length]!.y} tone={rightTone} />
           <HexNode x={n.x} y={n.y} tone={rightTone} r={24} float />
         </g>
       ))}
@@ -500,9 +500,9 @@ export function AvailabilityBars() {
 /* ---------------- 12. Fencing ---------------- */
 
 export function FencingDiagram({ step }: { step: number }) {
-  const tone = FENCING_STEPS[step].tone;
+  const tone = FENCING_STEPS[step]!.tone;
   return (
-    <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={FENCING_STEPS[step].name}>
+    <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={FENCING_STEPS[step]!.name}>
       <HexNode x={90} y={120} r={34} tone={step === 0 ? "coral" : step === 1 ? "muted" : "muted"} label="N1" />
       {step >= 1 ? (
         <g>
@@ -520,7 +520,7 @@ export function FencingDiagram({ step }: { step: number }) {
         </text>
       ) : null}
       <text x={200} y={36} textAnchor="middle" fill={toneVar[tone]} fontSize={13} fontFamily="var(--font-p-mono)">
-        {FENCING_STEPS[step].name.toUpperCase()}
+        {FENCING_STEPS[step]!.name.toUpperCase()}
       </text>
     </svg>
   );
@@ -558,7 +558,7 @@ export function MiniDashboard() {
             <div className="p-mono text-p-muted">{m.k}</div>
             <div className="p-num mt-1 text-lg text-p-text">{m.v}</div>
             <svg viewBox="0 0 98 34" className="mt-2 h-8 w-full" aria-hidden="true">
-              <path d={SPARK[i]} fill="none" stroke="var(--p-accent)" strokeWidth={1.6} />
+              <path d={SPARK[i]!} fill="none" stroke="var(--p-accent)" strokeWidth={1.6} />
             </svg>
           </div>
         ))}
