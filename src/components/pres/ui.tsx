@@ -11,7 +11,7 @@ export function Panel({
   hover?: boolean;
 }) {
   return (
-    <div className={`p-surface dk-brackets ${hover ? "dk-hoverable" : ""} ${className}`}>
+    <div className={`dk-surface dk-brackets ${hover ? "dk-hoverable" : ""} ${className}`}>
       {children}
     </div>
   );
@@ -63,7 +63,7 @@ export function Toggle({
             type="button"
             aria-pressed={on}
             onClick={() => onChange(o.key)}
-            className={`p-focus rounded-full px-4 py-2 text-sm transition-colors ${
+            className={`dk-focus rounded-full px-4 py-2 text-sm transition-colors ${
               on ? "bg-p-accent/15 text-p-accent" : "text-p-muted hover:text-p-text"
             }`}
             style={on ? { boxShadow: "inset 0 0 0 1px var(--p-accent)" } : undefined}
@@ -98,7 +98,7 @@ export function Tabs({
             role="tab"
             aria-selected={on}
             onClick={() => onChange(o.key)}
-            className={`p-focus rounded-xl border px-4 py-2 text-sm transition-colors ${
+            className={`dk-focus rounded-xl border px-4 py-2 text-sm transition-colors ${
               on
                 ? "border-p-accent bg-p-accent/12 text-p-accent"
                 : "border-p-line bg-p-surface text-p-muted hover:text-p-text"

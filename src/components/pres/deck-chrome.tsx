@@ -88,7 +88,7 @@ export function TopicRail({
               className="dk-focus group relative flex items-center justify-center rounded-full"
             >
               <span
-                className={`p-num relative z-10 flex h-9 w-9 items-center justify-center rounded-full border text-[11px] transition-colors ${
+                className={`dk-num relative z-10 flex h-9 w-9 items-center justify-center rounded-full border text-[11px] transition-colors ${
                   on
                     ? "border-p-accent bg-p-surface-2 text-p-accent"
                     : "border-p-line bg-p-bg text-p-muted hover:text-p-text"
