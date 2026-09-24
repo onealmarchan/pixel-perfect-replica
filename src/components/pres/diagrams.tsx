@@ -44,14 +44,14 @@ function HexNode({
 }) {
   const c = toneVar[tone];
   return (
-    <g className={float ? "p-float" : undefined} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
+    <g className={float ? "dk-float" : undefined} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
       <polygon
         points={hex(x, y, r)}
         fill="color-mix(in oklab, var(--p-surface-2) 85%, transparent)"
         stroke={c}
         strokeWidth={2}
       />
-      <circle cx={x} cy={y - r * 0.35} r={2.6} fill={c} className="p-led" />
+      <circle cx={x} cy={y - r * 0.35} r={2.6} fill={c} className="dk-led" />
       {label ? (
         <text
           x={x}
@@ -126,7 +126,7 @@ export function CoverGraph() {
     { x: 60, y: 200 },
   ];
   return (
-    <svg viewBox="0 0 360 400" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} aria-hidden="true">
+    <svg viewBox="0 0 360 400" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} aria-hidden="true">
       {nodes.map((n, i) => {
         const m = nodes[(i + 1) % nodes.length]!;
         return <Link key={i} x1={n.x} y1={n.y} x2={m.x} y2={m.y} dur={2.4 + i * 0.2} />;
@@ -149,12 +149,12 @@ export function CoverGraph() {
 
 export function SpofDiagram() {
   return (
-    <svg viewBox="0 0 420 300" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label="Un servidor único que cae detiene el servicio; tres servidores en clúster siguen activos aunque uno falle.">
+    <svg viewBox="0 0 420 300" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label="Un servidor único que cae detiene el servicio; tres servidores en clúster siguen activos aunque uno falle.">
       <text x={100} y={26} textAnchor="middle" fill="var(--p-muted)" fontSize={12} fontFamily="var(--font-p-mono)">
         SERVIDOR ÚNICO
       </text>
       <rect x={60} y={90} width={80} height={110} rx={10} fill="var(--p-surface-2)" stroke="var(--p-coral)" strokeWidth={2} />
-      <circle cx={100} cy={115} r={4} fill="var(--p-coral)" className="p-led" />
+      <circle cx={100} cy={115} r={4} fill="var(--p-coral)" className="dk-led" />
       <text x={100} y={165} textAnchor="middle" fill="var(--p-coral)" fontSize={12} fontFamily="var(--font-p-mono)">
         CAÍDO
       </text>
@@ -177,7 +177,7 @@ export function SpofDiagram() {
             stroke={i === 1 ? "var(--p-coral)" : "var(--p-mint)"}
             strokeWidth={2}
           />
-          <circle cx={x} cy={120} r={3.5} fill={i === 1 ? "var(--p-coral)" : "var(--p-mint)"} className="p-led" />
+          <circle cx={x} cy={120} r={3.5} fill={i === 1 ? "var(--p-coral)" : "var(--p-mint)"} className="dk-led" />
         </g>
       ))}
       <text x={305} y={235} textAnchor="middle" fill="var(--p-mint)" fontSize={13} fontFamily="var(--font-p-body)">
@@ -200,7 +200,7 @@ const CLUSTER_NODES = [
 export function ClusterGraph() {
   const [active, setActive] = useState<number | null>(null);
   return (
-    <svg viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label="Diagrama de cinco nodos interconectados que forman un clúster.">
+    <svg viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label="Diagrama de cinco nodos interconectados que forman un clúster.">
       {CLUSTER_NODES.map((n, i) => {
         const m = CLUSTER_NODES[(i + 1) % CLUSTER_NODES.length]!;
         return <Link key={i} x1={n.x} y1={n.y} x2={m.x} y2={m.y} dur={2.4 + i * 0.25} />;
@@ -211,7 +211,7 @@ export function ClusterGraph() {
           tabIndex={0}
           role="button"
           aria-label={n.tip}
-          className="p-focus cursor-pointer"
+          className="dk-focus cursor-pointer"
           onMouseEnter={() => setActive(i)}
           onMouseLeave={() => setActive(null)}
           onFocus={() => setActive(i)}
@@ -293,7 +293,7 @@ export function HeartbeatGraph({ failed }: { failed: boolean }) {
   ];
   const down = 2;
   return (
-    <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={failed ? "Un nodo dejó de responder y sus latidos se interrumpen." : "Todos los nodos intercambian latidos."}>
+    <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label={failed ? "Un nodo dejó de responder y sus latidos se interrumpen." : "Todos los nodos intercambian latidos."}>
       {nodes.map((n, i) => {
         const m = nodes[(i + 1) % nodes.length]!;
         const broken = failed && (i === down || (i + 1) % nodes.length === down);
@@ -312,7 +312,7 @@ export function QuorumTable() {
   const [hover, setHover] = useState<number | null>(null);
   return (
     <div className="w-full overflow-hidden rounded-2xl border border-p-line">
-      <div className="p-mono grid grid-cols-[1fr_auto_auto] gap-3 border-b border-p-line bg-p-surface-2 px-4 py-3 text-p-muted sm:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="dk-mono grid grid-cols-[1fr_auto_auto] gap-3 border-b border-p-line bg-p-surface-2 px-4 py-3 text-p-muted sm:grid-cols-[1.4fr_1fr_1fr]">
         <span>Nodos (N)</span>
         <span className="text-right sm:text-left">Quórum</span>
         <span className="text-right sm:text-left">Fallos</span>
@@ -327,7 +327,7 @@ export function QuorumTable() {
           }`}
         >
           <div className="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-            <span className="p-num text-base text-p-text">{r.nodes}</span>
+            <span className="dk-num text-base text-p-text">{r.nodes}</span>
             <span className="flex gap-1.5" aria-hidden="true">
               {Array.from({ length: r.nodes }).map((_, k) => (
                 <span
@@ -340,8 +340,8 @@ export function QuorumTable() {
               ))}
             </span>
           </div>
-          <span className="p-num text-right text-base text-p-text sm:text-left">{r.quorum}</span>
-          <span className="p-num text-right text-base text-p-muted sm:text-left">{r.tolerated}</span>
+          <span className="dk-num text-right text-base text-p-text sm:text-left">{r.quorum}</span>
+          <span className="dk-num text-right text-base text-p-muted sm:text-left">{r.tolerated}</span>
         </div>
       ))}
     </div>
@@ -363,7 +363,7 @@ export function SplitBrainDiagram({ guarded }: { guarded: boolean }) {
   const leftTone: Tone = guarded ? "mint" : "coral";
   const rightTone: Tone = guarded ? "amber" : "coral";
   return (
-    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={guarded ? "Con quórum: el grupo de tres nodos opera y el grupo de dos se detiene." : "Sin protección: ambos grupos creen estar activos."}>
+    <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label={guarded ? "Con quórum: el grupo de tres nodos opera y el grupo de dos se detiene." : "Sin protección: ambos grupos creen estar activos."}>
       <Link x1={140} y1={130} x2={310} y2={90} broken />
       {left.map((n, i) => (
         <g key={`l${i}`}>
@@ -391,17 +391,17 @@ export function SplitBrainDiagram({ guarded }: { guarded: boolean }) {
 
 export function VmLoop() {
   return (
-    <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label="Una máquina virtual viaja de un host a otro sin apagarse.">
+    <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label="Una máquina virtual viaja de un host a otro sin apagarse.">
       {[60, 240].map((x, i) => (
         <g key={x}>
           <rect x={x} y={70} width={100} height={120} rx={12} fill="var(--p-surface)" stroke="var(--p-mint)" strokeWidth={1.5} />
           <text x={x + 50} y={60} textAnchor="middle" fill="var(--p-muted)" fontSize={12} fontFamily="var(--font-p-mono)">
             {i === 0 ? "ORIGEN" : "DESTINO"}
           </text>
-          <circle cx={x + 16} cy={88} r={3.5} fill="var(--p-mint)" className="p-led" />
+          <circle cx={x + 16} cy={88} r={3.5} fill="var(--p-mint)" className="dk-led" />
         </g>
       ))}
-      <path d="M 160 130 L 240 130" stroke="var(--p-sky)" strokeWidth={1.5} opacity={0.5} className="p-dash" fill="none" />
+      <path d="M 160 130 L 240 130" stroke="var(--p-sky)" strokeWidth={1.5} opacity={0.5} className="dk-dash" fill="none" />
       <g>
         <rect x={-20} y={-14} width={40} height={28} rx={7} fill="color-mix(in oklab, var(--p-sky) 22%, transparent)" stroke="var(--p-sky)" />
         <text x={0} y={5} textAnchor="middle" fill="var(--p-sky)" fontSize={12} fontFamily="var(--font-p-mono)">
@@ -420,7 +420,7 @@ export function MigrationDiagram({ phase }: { phase: number }) {
   const cpuMoving = phase === 2;
   const done = phase === 3;
   return (
-    <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={`Fase ${phase + 1} del proceso de migración en vivo.`}>
+    <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label={`Fase ${phase + 1} del proceso de migración en vivo.`}>
       <rect x={40} y={60} width={110} height={140} rx={12} fill="var(--p-surface)" stroke={done ? "var(--p-muted)" : "var(--p-mint)"} strokeWidth={1.5} />
       <rect x={250} y={60} width={110} height={140} rx={12} fill="var(--p-surface)" stroke={phase >= 0 ? "var(--p-sky)" : "var(--p-muted)"} strokeWidth={1.5} strokeDasharray={phase === 0 ? "6 5" : undefined} />
       <text x={95} y={48} textAnchor="middle" fill="var(--p-muted)" fontSize={12} fontFamily="var(--font-p-mono)">
@@ -432,7 +432,7 @@ export function MigrationDiagram({ phase }: { phase: number }) {
 
       {[0, 1, 2].map((i) => (
         <g key={i}>
-          <line x1={150} y1={95 + i * 35} x2={250} y2={95 + i * 35} stroke="var(--p-sky)" opacity={ramActive ? 0.6 : 0.2} className={ramActive ? "p-dash" : undefined} />
+          <line x1={150} y1={95 + i * 35} x2={250} y2={95 + i * 35} stroke="var(--p-sky)" opacity={ramActive ? 0.6 : 0.2} className={ramActive ? "dk-dash" : undefined} />
           {ramActive ? (
             <circle r={3} fill="var(--p-sky)">
               <animateMotion dur={`${1.4 + i * 0.3}s`} repeatCount="indefinite" path={`M 150 ${95 + i * 35} L 250 ${95 + i * 35}`} />
@@ -475,11 +475,11 @@ export function MigrationDiagram({ phase }: { phase: number }) {
 
 export function AvailabilityBars() {
   return (
-    <div className="flex w-full flex-col p-gap-sm">
+    <div className="flex w-full flex-col dk-gap-sm">
       {AVAILABILITY.map((a) => (
         <div key={a.level} className="flex min-w-0 flex-col gap-1.5">
           <div className="flex items-baseline justify-between gap-3">
-            <span className="p-num text-base text-p-text">{a.level}</span>
+            <span className="dk-num text-base text-p-text">{a.level}</span>
             <span className="text-sm text-p-muted">{a.downtime}</span>
           </div>
           <div className="h-3 w-full overflow-hidden rounded-full bg-p-surface-2">
@@ -502,7 +502,7 @@ export function AvailabilityBars() {
 export function FencingDiagram({ step }: { step: number }) {
   const tone = FENCING_STEPS[step]!.tone;
   return (
-    <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet" className={`${svgClass} p-motion`} role="img" aria-label={FENCING_STEPS[step]!.name}>
+    <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet" className={`${svgClass} dk-motion`} role="img" aria-label={FENCING_STEPS[step]!.name}>
       <HexNode x={90} y={120} r={34} tone={step === 0 ? "coral" : step === 1 ? "muted" : "muted"} label="N1" />
       {step >= 1 ? (
         <g>
@@ -541,10 +541,10 @@ export function MiniDashboard() {
       role="img"
       aria-label="Panel de control decorativo con indicadores de estado y gráficos de tendencia con datos fijos."
     >
-      <div className="p-mono mb-3 flex items-center justify-between text-p-muted">
+      <div className="dk-mono mb-3 flex items-center justify-between text-p-muted">
         <span>cluster · status</span>
         <span className="flex items-center gap-2">
-          <span className="p-led h-2 w-2 rounded-full bg-p-mint" />
+          <span className="dk-led h-2 w-2 rounded-full bg-p-mint" />
           OK
         </span>
       </div>
@@ -555,8 +555,8 @@ export function MiniDashboard() {
           { k: "vm", v: "12 act." },
         ].map((m, i) => (
           <div key={m.k} className="rounded-xl border border-p-line bg-p-surface-2 p-3">
-            <div className="p-mono text-p-muted">{m.k}</div>
-            <div className="p-num mt-1 text-lg text-p-text">{m.v}</div>
+            <div className="dk-mono text-p-muted">{m.k}</div>
+            <div className="dk-num mt-1 text-lg text-p-text">{m.v}</div>
             <svg viewBox="0 0 98 34" className="mt-2 h-8 w-full" aria-hidden="true">
               <path d={SPARK[i]!} fill="none" stroke="var(--p-accent)" strokeWidth={1.6} />
             </svg>

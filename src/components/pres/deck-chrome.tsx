@@ -18,7 +18,7 @@ export function BackgroundMesh() {
           backgroundSize: "34px 34px",
         }}
       />
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="p-motion absolute inset-0 h-full w-full">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="dk-motion absolute inset-0 h-full w-full">
         {nodes.map((n, i) => {
           const m = nodes[(i + 1) % nodes.length]!;
           const path = `M ${n.x} ${n.y} L ${m.x} ${m.y}`;
@@ -48,8 +48,8 @@ export function BackgroundMesh() {
 export function TopBar({ index }: { index: number }) {
   return (
     <header className="relative z-10 flex items-center justify-between gap-4">
-      <span className="p-mono hidden text-p-muted sm:inline">{DECK_TITLE}</span>
-      <span className="p-num ml-auto text-sm text-p-muted">
+      <span className="dk-mono hidden text-p-muted sm:inline">{DECK_TITLE}</span>
+      <span className="dk-num ml-auto text-sm text-p-muted">
         {String(index + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
       </span>
     </header>
@@ -85,7 +85,7 @@ export function TopicRail({
               type="button"
               onClick={() => onGo(target)}
               aria-current={on ? "step" : undefined}
-              className="p-focus group relative flex items-center justify-center rounded-full"
+              className="dk-focus group relative flex items-center justify-center rounded-full"
             >
               <span
                 className={`p-num relative z-10 flex h-9 w-9 items-center justify-center rounded-full border text-[11px] transition-colors ${
@@ -97,7 +97,7 @@ export function TopicRail({
               >
                 {t.code}
               </span>
-              <span className="p-mono pointer-events-none absolute left-11 z-20 hidden whitespace-nowrap rounded-lg border border-p-line bg-p-surface-2 px-3 py-1.5 text-p-text opacity-0 transition-opacity group-hover:block group-hover:opacity-100 group-focus-visible:block group-focus-visible:opacity-100">
+              <span className="dk-mono pointer-events-none absolute left-11 z-20 hidden whitespace-nowrap rounded-lg border border-p-line bg-p-surface-2 px-3 py-1.5 text-p-text opacity-0 transition-opacity group-hover:block group-hover:opacity-100 group-focus-visible:block group-focus-visible:opacity-100">
                 {t.name}
               </span>
             </button>
@@ -136,7 +136,7 @@ export function Navigator({
               onClick={() => onGo(target)}
               aria-label={`Tema ${t.code}: ${t.name}`}
               aria-current={on ? "step" : undefined}
-              className="p-focus h-6 w-6 rounded-full"
+              className="dk-focus h-6 w-6 rounded-full"
             >
               <span
                 className={`block h-2.5 w-2.5 rounded-full transition-colors ${on ? "bg-p-accent" : "bg-p-muted/40"}`}
@@ -150,7 +150,7 @@ export function Navigator({
         <button
           type="button"
           onClick={onFullscreen}
-          className="p-focus hidden h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-muted transition-colors hover:text-p-text sm:inline-flex"
+          className="dk-focus hidden h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-muted transition-colors hover:text-p-text sm:inline-flex"
         >
           <Maximize2 className="h-4 w-4" aria-hidden="true" />
           <span className="sr-only">Pantalla completa (F)</span>
@@ -159,7 +159,7 @@ export function Navigator({
           type="button"
           onClick={onPrev}
           disabled={index === 0}
-          className="p-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
+          className="dk-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
         >
           <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           <span className="sr-only">Diapositiva anterior</span>
@@ -168,7 +168,7 @@ export function Navigator({
           type="button"
           onClick={onNext}
           disabled={index === SLIDES.length - 1}
-          className="p-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
+          className="dk-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
         >
           <ChevronRight className="h-4 w-4" aria-hidden="true" />
           <span className="sr-only">Diapositiva siguiente</span>

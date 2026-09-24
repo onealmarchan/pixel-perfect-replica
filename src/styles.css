@@ -180,14 +180,14 @@
   --font-p-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-@utility p-deck {
+@utility dk-deck {
   background-color: var(--p-bg);
   color: var(--p-text);
   font-family: var(--font-p-body);
   transition: --p-accent 0.6s ease;
 }
 
-@utility p-title-cover {
+@utility dk-title-cover {
   font-family: var(--font-p-display);
   font-weight: 800;
   font-size: clamp(2.25rem, 2vw + 4vh, 4.5rem);
@@ -196,7 +196,7 @@
   text-wrap: balance;
 }
 
-@utility p-title {
+@utility dk-title {
   font-family: var(--font-p-display);
   font-weight: 700;
   font-size: clamp(1.5rem, 1.2vw + 2vh, 2.5rem);
@@ -205,38 +205,38 @@
   text-wrap: balance;
 }
 
-@utility p-body {
+@utility dk-body {
   font-size: max(1rem, clamp(1rem, 0.6vw + 1.2vh, 1.375rem));
   line-height: 1.6;
   max-width: 60ch;
   text-wrap: pretty;
 }
 
-@utility p-mono {
+@utility dk-mono {
   font-family: var(--font-p-mono);
   font-size: max(0.75rem, clamp(0.75rem, 0.5vw + 0.6vh, 0.95rem));
   text-transform: uppercase;
   letter-spacing: 0.16em;
 }
 
-@utility p-num {
+@utility dk-num {
   font-family: var(--font-p-mono);
   font-variant-numeric: tabular-nums;
 }
 
-@utility p-pad {
+@utility dk-pad {
   padding: clamp(20px, 4vw, 72px);
 }
 
-@utility p-gap {
+@utility dk-gap {
   gap: clamp(16px, 2.5vh, 32px);
 }
 
-@utility p-gap-sm {
+@utility dk-gap-sm {
   gap: clamp(8px, 1.4vh, 16px);
 }
 
-@utility p-surface {
+@utility dk-surface {
   background-color: var(--p-surface);
   border: 1px solid var(--p-line);
   border-radius: 1rem;
@@ -247,7 +247,7 @@
     background-color 0.25s ease;
 }
 
-@utility p-hoverable {
+@utility dk-hoverable {
   &:hover {
     transform: translateY(-4px);
     background-color: var(--p-surface-2);
@@ -255,7 +255,7 @@
   }
 }
 
-@utility p-brackets {
+@utility dk-brackets {
   &::before,
   &::after {
     content: "";
@@ -281,12 +281,12 @@
   }
 }
 
-@utility p-glow {
+@utility dk-glow {
   box-shadow: 0 0 0 1px color-mix(in oklab, var(--p-accent) 18%, transparent),
     0 18px 60px -30px color-mix(in oklab, var(--p-accent) 70%, transparent);
 }
 
-@utility p-scroll {
+@utility dk-scroll {
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-mask-image: linear-gradient(
@@ -303,7 +303,7 @@
   );
 }
 
-@utility p-focus {
+@utility dk-focus {
   &:focus-visible {
     outline: 2px solid var(--p-accent);
     outline-offset: 3px;
@@ -320,7 +320,7 @@
   }
 }
 
-@keyframes p-float {
+@keyframes dk-float {
   0%,
   100% {
     transform: translateY(0);
@@ -330,32 +330,32 @@
   }
 }
 
-@keyframes p-dash {
+@keyframes dk-dash {
   to {
     stroke-dashoffset: -40;
   }
 }
 
-.p-led {
+.dk-led {
   animation: p-pulse-soft 2.4s ease-in-out infinite;
 }
 
-.p-float {
-  animation: p-float 4.5s ease-in-out infinite;
+.dk-float {
+  animation: dk-float 4.5s ease-in-out infinite;
 }
 
-.p-dash {
+.dk-dash {
   stroke-dasharray: 4 8;
-  animation: p-dash 2.4s linear infinite;
+  animation: dk-dash 2.4s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .p-led,
-  .p-float,
-  .p-dash,
-  .p-motion animate,
-  .p-motion animateMotion,
-  .p-motion animateTransform {
+  .dk-led,
+  .dk-float,
+  .dk-dash,
+  .dk-motion animate,
+  .dk-motion animateMotion,
+  .dk-motion animateTransform {
     animation: none !important;
   }
 }

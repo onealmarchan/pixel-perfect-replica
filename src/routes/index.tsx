@@ -131,7 +131,7 @@ function Deck() {
 
   return (
     <div
-      className="p-deck relative h-[100dvh] w-full overflow-hidden"
+      className="dk-deck relative h-[100dvh] w-full overflow-hidden"
       style={
         {
           "--p-accent": accent.accent,
@@ -161,9 +161,9 @@ function Deck() {
         ) : (
           <div className="hidden w-[84px] shrink-0 lg:block" aria-hidden="true" />
         )}
-        <div className="grid min-h-0 min-w-0 flex-1 grid-rows-[auto_1fr_auto] p-pad">
+        <div className="grid min-h-0 min-w-0 flex-1 grid-rows-[auto_1fr_auto] dk-pad">
           <TopBar index={index} />
-          <main className="grid min-h-0 min-w-0 grid-rows-[auto_1fr] p-gap py-[clamp(12px,2.5vh,28px)]">
+          <main className="grid min-h-0 min-w-0 grid-rows-[auto_1fr] dk-gap py-[clamp(12px,2.5vh,28px)]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slide.id}
@@ -171,17 +171,17 @@ function Deck() {
                 animate={variants.animate}
                 exit={variants.exit}
                 transition={variants.transition}
-                className="grid min-h-0 min-w-0 grid-rows-[auto_1fr] p-gap"
+                className="grid min-h-0 min-w-0 grid-rows-[auto_1fr] dk-gap"
               >
                 {slide.visual === "cover" ? null : (
                   <div className="flex min-w-0 flex-col gap-2">
-                    {slide.kicker ? <span className="p-mono text-p-accent">{slide.kicker}</span> : null}
-                    <h2 ref={titleRef} tabIndex={-1} className="p-title p-focus text-p-text">
+                    {slide.kicker ? <span className="dk-mono text-p-accent">{slide.kicker}</span> : null}
+                    <h2 ref={titleRef} tabIndex={-1} className="dk-title dk-focus text-p-text">
                       {slide.title}
                     </h2>
                   </div>
                 )}
-                <div className="p-scroll min-h-0 min-w-0">
+                <div className="dk-scroll min-h-0 min-w-0">
                   <SlideBody index={index} />
                 </div>
               </motion.div>

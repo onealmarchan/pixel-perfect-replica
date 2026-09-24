@@ -54,9 +54,9 @@ const ICONS: Record<string, LucideIcon> = {
 /* ---------- 1 ---------- */
 function Cover() {
   return (
-    <div className="flex min-h-0 flex-col justify-center p-gap lg:grid lg:grid-cols-12 lg:items-center">
-      <div className="flex min-w-0 flex-col p-gap lg:col-span-7">
-        <h1 className="p-title-cover">
+    <div className="flex min-h-0 flex-col justify-center dk-gap lg:grid lg:grid-cols-12 lg:items-center">
+      <div className="flex min-w-0 flex-col dk-gap lg:col-span-7">
+        <h1 className="dk-title-cover">
           {COVER.titleLead}
           <span
             style={{
@@ -73,12 +73,12 @@ function Cover() {
           <CoverGraph />
         </div>
         <div className="flex flex-col gap-4">
-          <span className="p-mono text-p-accent">{COVER.studentsLabel}</span>
+          <span className="dk-mono text-p-accent">{COVER.studentsLabel}</span>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {COVER.students.map((s) => (
               <Panel key={s.name} className="px-4 py-3">
                 <div className="text-base font-semibold text-p-text">{s.name}</div>
-                <div className="p-num mt-1 text-sm text-p-muted">{s.id}</div>
+                <div className="dk-num mt-1 text-sm text-p-muted">{s.id}</div>
               </Panel>
             ))}
           </div>
@@ -86,7 +86,7 @@ function Cover() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {COVER.fields.map((f) => (
               <div key={f.label} className="min-w-0">
-                <div className="p-mono text-p-muted">{f.label}:</div>
+                <div className="dk-mono text-p-muted">{f.label}:</div>
                 <div className="mt-1 text-base text-p-text/90">{f.value}</div>
               </div>
             ))}
@@ -105,13 +105,13 @@ function Cover() {
 /* ---------- 2 ---------- */
 function Agenda() {
   return (
-    <div className="grid grid-cols-1 p-gap sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 dk-gap sm:grid-cols-2 lg:grid-cols-3">
       {AGENDA.map((a) => {
         const Icon = ICONS[a.icon]!;
         return (
           <Panel key={a.code} className="flex flex-col gap-3 p-5">
             <div className="flex items-center justify-between gap-3">
-              <span className="p-num text-sm text-p-accent">{a.code}</span>
+              <span className="dk-num text-sm text-p-accent">{a.code}</span>
               <Icon className="h-5 w-5 shrink-0 text-p-accent" aria-hidden="true" />
             </div>
             <p className="text-base text-p-text/90">{a.text}</p>
@@ -130,7 +130,7 @@ function ClusterSlide() {
     <TwoCol
       text={
         <>
-          <p className="p-body text-p-text/90">{CLUSTER_DEFINITION}</p>
+          <p className="dk-body text-p-text/90">{CLUSTER_DEFINITION}</p>
           <div className="flex flex-wrap gap-2">
             {CLUSTER_CHIPS.map((c) => (
               <Chip key={c}>{c}</Chip>
@@ -138,7 +138,7 @@ function ClusterSlide() {
           </div>
           <Tabs options={CLUSTER_TABS} value={tab} onChange={setTab} label="Tipos de clúster" />
           <Panel hover={false} className="p-4">
-            <p className="p-body text-p-text/90">{current.text}</p>
+            <p className="dk-body text-p-text/90">{current.text}</p>
           </Panel>
         </>
       }
@@ -154,10 +154,10 @@ function HeartbeatSlide() {
     <TwoCol
       text={
         <>
-          <ol className="flex flex-col p-gap-sm">
+          <ol className="flex flex-col dk-gap-sm">
             {HEARTBEAT_STEPS.map((s, i) => (
-              <li key={s} className="p-body flex gap-3 text-p-text/90">
-                <span className="p-num mt-1 shrink-0 text-sm text-p-accent">{String(i + 1).padStart(2, "0")}</span>
+              <li key={s} className="dk-body flex gap-3 text-p-text/90">
+                <span className="dk-num mt-1 shrink-0 text-sm text-p-accent">{String(i + 1).padStart(2, "0")}</span>
                 <span className="min-w-0">{s}</span>
               </li>
             ))}
@@ -186,9 +186,9 @@ function QuorumSlide() {
       text={
         <>
           <Panel hover={false} className="px-4 py-3">
-            <code className="p-num text-base text-p-accent">{QUORUM_FORMULA}</code>
+            <code className="dk-num text-base text-p-accent">{QUORUM_FORMULA}</code>
           </Panel>
-          <p className="p-body text-p-text/90">{QUORUM_TEXT}</p>
+          <p className="dk-body text-p-text/90">{QUORUM_TEXT}</p>
           <div
             className="rounded-2xl border px-4 py-3 text-sm"
             style={{
@@ -249,8 +249,8 @@ function MigrationSlide() {
             ))}
           </div>
           <Panel hover={false} className="flex flex-col gap-2 p-5">
-            <span className="p-mono text-p-accent">{phase.name}</span>
-            <p className="p-body text-p-text/90">{phase.text}</p>
+            <span className="dk-mono text-p-accent">{phase.name}</span>
+            <p className="dk-body text-p-text/90">{phase.text}</p>
           </Panel>
           <StepControls step={step} total={MIGRATION_PHASES.length} onStep={setStep} label="Fases de la migración" />
         </>
@@ -270,7 +270,7 @@ function FencingSlide({ bullets }: { bullets: string[] }) {
           <Bullets items={bullets} />
           <div className="flex flex-wrap items-center gap-3">
             <StepControls step={step} total={FENCING_STEPS.length} onStep={setStep} label="Pasos del fencing" />
-            <span className="p-mono text-p-text">{FENCING_STEPS[step]!.name}</span>
+            <span className="dk-mono text-p-text">{FENCING_STEPS[step]!.name}</span>
           </div>
         </>
       }
@@ -282,11 +282,11 @@ function FencingSlide({ bullets }: { bullets: string[] }) {
 /* ---------- 13 ---------- */
 function MonitoringSlide() {
   return (
-    <div className="grid min-h-0 grid-cols-1 items-start p-gap lg:grid-cols-12">
-      <div className="grid min-w-0 grid-cols-1 p-gap sm:grid-cols-2 lg:col-span-7">
+    <div className="grid min-h-0 grid-cols-1 items-start dk-gap lg:grid-cols-12">
+      <div className="grid min-w-0 grid-cols-1 dk-gap sm:grid-cols-2 lg:col-span-7">
         {MONITORING.map((col) => (
           <Panel key={col.title} className="flex flex-col gap-3 p-5">
-            <span className="p-mono text-p-accent">{col.title}</span>
+            <span className="dk-mono text-p-accent">{col.title}</span>
             <ul className="flex flex-col gap-2">
               {col.items.map((it) => (
                 <li key={it} className="flex gap-2.5 text-base text-p-text/90">
@@ -308,18 +308,18 @@ function MonitoringSlide() {
 /* ---------- 14 ---------- */
 function Closing() {
   return (
-    <div className="flex min-h-0 flex-col justify-center p-gap">
-      <div className="grid grid-cols-1 p-gap sm:grid-cols-2">
+    <div className="flex min-h-0 flex-col justify-center dk-gap">
+      <div className="grid grid-cols-1 dk-gap sm:grid-cols-2">
         {CONCLUSIONS.map((c, i) => (
           <Panel key={c} className="flex gap-4 p-5">
-            <span className="p-num shrink-0 text-sm text-p-accent">{String(i + 1).padStart(2, "0")}</span>
+            <span className="dk-num shrink-0 text-sm text-p-accent">{String(i + 1).padStart(2, "0")}</span>
             <p className="min-w-0 text-base text-p-text/90">{c}</p>
           </Panel>
         ))}
       </div>
       <div className="flex flex-col items-center gap-3 pt-2 text-center">
         <p
-          className="p-title"
+          className="dk-title"
           style={{
             backgroundImage: "linear-gradient(90deg, var(--p-mint), var(--p-sky))",
             WebkitBackgroundClip: "text",
@@ -329,7 +329,7 @@ function Closing() {
         >
           {CLOSING.thanks}
         </p>
-        <p className="p-mono text-p-muted">{CLOSING.names.join(" · ")}</p>
+        <p className="dk-mono text-p-muted">{CLOSING.names.join(" · ")}</p>
       </div>
     </div>
   );

@@ -11,21 +11,21 @@ export function Panel({
   hover?: boolean;
 }) {
   return (
-    <div className={`p-surface p-brackets ${hover ? "p-hoverable" : ""} ${className}`}>
+    <div className={`p-surface dk-brackets ${hover ? "dk-hoverable" : ""} ${className}`}>
       {children}
     </div>
   );
 }
 
 export function Kicker({ children }: { children: ReactNode }) {
-  return <span className="p-mono text-p-accent">{children}</span>;
+  return <span className="dk-mono text-p-accent">{children}</span>;
 }
 
 export function Bullets({ items }: { items: string[] }) {
   return (
-    <ul className="flex flex-col p-gap-sm">
+    <ul className="flex flex-col dk-gap-sm">
       {items.map((b) => (
-        <li key={b} className="p-body flex gap-3 text-p-text/90">
+        <li key={b} className="dk-body flex gap-3 text-p-text/90">
           <span className="mt-[0.62em] h-1.5 w-1.5 shrink-0 rounded-full bg-p-accent" aria-hidden="true" />
           <span className="min-w-0">{b}</span>
         </li>
@@ -129,19 +129,19 @@ export function StepControls({
         type="button"
         onClick={() => onStep(Math.max(0, step - 1))}
         disabled={step === 0}
-        className="p-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
+        className="dk-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
       >
         <ChevronLeft className="h-4 w-4" aria-hidden="true" />
         <span className="sr-only">Paso anterior</span>
       </button>
-      <span className="p-num text-sm text-p-muted">
+      <span className="dk-num text-sm text-p-muted">
         {String(step + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
       </span>
       <button
         type="button"
         onClick={() => onStep(Math.min(total - 1, step + 1))}
         disabled={step === total - 1}
-        className="p-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
+        className="dk-focus inline-flex h-10 w-10 items-center justify-center rounded-full border border-p-line bg-p-surface text-p-text transition-colors hover:bg-p-surface-2 disabled:opacity-35"
       >
         <ChevronRight className="h-4 w-4" aria-hidden="true" />
         <span className="sr-only">Paso siguiente</span>
@@ -158,8 +158,8 @@ export function TwoCol({
   visual: ReactNode;
 }) {
   return (
-    <div className="grid min-h-0 grid-cols-1 items-center p-gap lg:grid-cols-12">
-      <div className="flex min-w-0 flex-col p-gap lg:col-span-5">{text}</div>
+    <div className="grid min-h-0 grid-cols-1 items-center dk-gap lg:grid-cols-12">
+      <div className="flex min-w-0 flex-col dk-gap lg:col-span-5">{text}</div>
       <div className="flex min-h-0 min-w-0 items-center justify-center lg:col-span-7">
         <div className="max-h-[42dvh] w-full lg:max-h-[62dvh]">{visual}</div>
       </div>
