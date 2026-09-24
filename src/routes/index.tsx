@@ -140,12 +140,12 @@ function Deck() {
         } as React.CSSProperties
       }
       onTouchStart={(e) => {
-        const t = e.touches[0];
+        const t = e.touches[0]!;
         touch.current = { x: t.clientX, y: t.clientY };
       }}
       onTouchEnd={(e) => {
         if (!touch.current) return;
-        const t = e.changedTouches[0];
+        const t = e.changedTouches[0]!;
         const dx = t.clientX - touch.current.x;
         const dy = t.clientY - touch.current.y;
         touch.current = null;
